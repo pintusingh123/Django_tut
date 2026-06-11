@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>hello</h1>
+   <form method="post" novalidate>
+    {% csrf_token %}
+
+    <p>{{ form.name.label_tag }}</p>
+    {{ form.name }}
+
+    {% if form.name.errors %}
+        <p style="color:red;">
+            {{ form.name.errors.0 }}
+        </p>
+    {% endif %}
+
+    <p>{{ form.email.label_tag }}</p>
+    {{ form.email }}
+
+    {% if form.email.errors %}
+        <p style="color:red;">
+            {{ form.email.errors.0 }}
+        </p>
+    {% endif %}
+
+    <p>{{ form.city.label_tag }}</p>
+    {{ form.city }}
+
+    {% if form.city.errors %}
+        <p style="color:red;">
+            {{ form.city.errors.0 }}
+        </p>
+    {% endif %}
+
+    <input type="submit" value="Submit">
+</form>
+  </body>
+</html>

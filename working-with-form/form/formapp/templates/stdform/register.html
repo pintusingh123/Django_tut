@@ -1,37 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>hellow</h1>
-  <!-- <form method="post">
-     {{form}}
-    <button type="submit">Register</button>
-  </form> -->
-
-   <!-- <form method="post">
-    <table>
-       {{form.as_table}}
-    </table>
-    <button type="submit">Register</button>
-  </form> -->
-
-    <!-- <form method="post">
-     <ul>
-      {{form.as_ul}}
-     </ul>
-    <button type="submit">Register</button>
-  </form> -->
-
-  <form method="post">
-     <ul>
-      {{form.as_p}}
-     </ul>
-    <button type="submit">Register</button>
-  </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>hellow</h1>
   
-</body>
+    <form action="" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+
+      <label for="{{field.id_for_label}}"> {{field.label}} </label>
+
+      <input
+        type="{{field.field.widget.input_type}}"
+        name="{{field.name}}"
+        required={{field.field.required}}
+        id="{{field.id_for_label}}"
+        value={{field.value|default:''}}
+      >
+
+      {% endfor %}
+       <button type="submit">Submit</button>
+    </form>
+  </body>
 </html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Posts</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fc;
+            padding: 30px;
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .container{
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .post-card{
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .post-card:hover{
+            transform: translateY(-3px);
+        }
+
+        .post-title{
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .post-content{
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .pagination{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .pagination a,
+        .pagination span{
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .pagination a:hover{
+            background: #4f46e5;
+            color: white;
+        }
+
+        .active-page{
+            background: #4f46e5 !important;
+            color: white !important;
+            border-color: #4f46e5 !important;
+        }
+
+        @media (max-width: 600px){
+            body{
+                padding: 15px;
+            }
+
+            .post-card{
+                padding: 15px;
+            }
+
+            .post-title{
+                font-size: 1.2rem;
+            }
+
+            .pagination a,
+            .pagination span{
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📝 Blog Posts</h1>
+
+        {% for post in page_obj %}
+        <div class="post-card">
+            <div class="post-title">
+                {{ post.title }}
+            </div>
+
+            <div class="post-content">
+                {{ post.content }}
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+
+        <div class="pagination">
+
+             {% if page_obj.has_previous %}
+             <a href="?page={{ page_obj.previous_page_number }}" >Previous</a>
+             {%endif%}
+             <span>Page{{page_obj.number}} of {{page_obj.paginator.num_pages}} </span>
+             {% if page_obj.has_next %}
+             <a href="?page={{ page_obj.next_page_number }}" >Next</a>
+             {%endif%}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

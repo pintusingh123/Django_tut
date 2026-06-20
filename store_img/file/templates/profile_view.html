@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Profile
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Welcome to TaskFlow</h1>
+    <p>Manage your tasks efficiently.</p>
+ profiles here view
+ <ul>
+  {% for profile in profiles %}
+  <li>
+    {{profile.name}}<br>
+    <img src="{{ profile.image.url }}" alt="{{ profile.name }}" width="200" height="200" >
+  </li>
+  {% endfor %}
+ </ul>
+</div>
+{% endblock %}
